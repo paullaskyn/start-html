@@ -24,8 +24,8 @@ function styles()
     return src('app/sass/*.sass')
     .pipe(sass())
     .pipe(concat('styles.min.css'))
-    .pipe(autoprefixer({overrideBrowserlist: ['last 10 versions'], grid: true})) // Если в проекте еспользуется Grid css, то значение должно быть true
-    //.pipe(cleancss({level}))
+    .pipe(autoprefixer({overrideBrowserslist: ['last 10 versions'], grid: true})) // Если в проекте еспользуется Grid css, то значение должно быть true
+    .pipe(cleancss( { level: { 1: { specialComments: 0 } }/* , format: 'beautify' */ } ))
     .pipe(dest('app/css/'))
     .pipe(browserSync.stream())
 }
@@ -35,7 +35,7 @@ function images()
     return src('app/img/src/**/*')
     .pipe(newer('app/img/dest/'))
     .pipe(imagemin())
-    .pipe(dest('app/img/dest'))
+    .pipe(dest('app/img/dest/'))
 }
 
 function delImg()
